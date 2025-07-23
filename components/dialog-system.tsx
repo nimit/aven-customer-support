@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { useDialogStore } from "@/lib/stores/dialog-store"
-import { motion, AnimatePresence } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useDialogStore } from "@/lib/stores/dialog-store";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 // Parameterized number of visible dialogs
-const MAX_VISIBLE_DIALOGS = 3
+const MAX_VISIBLE_DIALOGS = 3;
 
 export function DialogSystem() {
-  const { dialogs, addText, clearOldDialogs } = useDialogStore()
-  const [visibleCount, setVisibleCount] = useState(MAX_VISIBLE_DIALOGS)
+  const { dialogs, addText, clearOldDialogs } = useDialogStore();
+  const [visibleCount, setVisibleCount] = useState(MAX_VISIBLE_DIALOGS);
 
   // Demo function to add text - you can call this from your audio transcription
   useEffect(() => {
     const interval = setInterval(() => {
-      clearOldDialogs()
-    }, 5000)
+      clearOldDialogs();
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [clearOldDialogs])
+    return () => clearInterval(interval);
+  }, [clearOldDialogs]);
 
   // Demo: Add some sample text every 10 seconds
   useEffect(() => {
@@ -28,22 +28,25 @@ export function DialogSystem() {
       "Here's what I found in the knowledge base.",
       "Would you like me to explain this further?",
       "Let me search for more information.",
-    ]
+    ];
 
-    let index = 0
+    let index = 1;
     const interval = setInterval(() => {
-      addText(demoTexts[index % demoTexts.length])
-      index++
-    }, 8000)
+      addText(demoTexts[index % demoTexts.length]);
+      index++;
+    }, 5000);
 
     // Add initial text
-    setTimeout(() => addText(demoTexts[0]), 2000)
+    const timeoutId = setTimeout(() => addText(demoTexts[0]), 2000);
 
-    return () => clearInterval(interval)
-  }, [addText])
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
+  }, [addText]);
 
   // Only show the specified number of most recent dialogs
-  const visibleDialogs = dialogs.slice(-visibleCount)
+  const visibleDialogs = dialogs.slice(-visibleCount).reverse();
 
   return (
     <div className="fixed top-0 right-0 bottom-0 w-96 pointer-events-none flex flex-col-reverse justify-start items-end p-8 overflow-hidden">
@@ -59,19 +62,19 @@ export function DialogSystem() {
         ))}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
 interface DialogBoxProps {
   dialog: {
-    id: string
-    text: string
-    timestamp: number
-    isStreaming: boolean
-  }
-  isLatest: boolean
-  position: number
-  total: number
+    id: string;
+    text: string;
+    timestamp: number;
+    isStreaming: boolean;
+  };
+  isLatest: boolean;
+  position: number;
+  total: number;
 }
 
 function DialogBox({ dialog, isLatest, position, total }: DialogBoxProps) {
@@ -107,26 +110,34 @@ function DialogBox({ dialog, isLatest, position, total }: DialogBoxProps) {
           opacity: Math.max(0.7, 1 - position * 0.15), // Fade out older messages slightly
         }}
       >
-        <StreamingText text={dialog.text} isStreaming={dialog.isStreaming} isLatest={isLatest} />
+        <StreamingText
+          text={dialog.text}
+          isStreaming={dialog.isStreaming}
+          isLatest={isLatest}
+        />
       </div>
     </motion.div>
-  )
+  );
 }
 
 interface StreamingTextProps {
-  text: string
-  isStreaming: boolean
-  isLatest: boolean
+  text: string;
+  isStreaming: boolean;
+  isLatest: boolean;
 }
 
 function StreamingText({ text, isStreaming, isLatest }: StreamingTextProps) {
   // Limit text length to prevent overflow
-  const displayText = text.length > 120 ? text.substring(0, 120) + "..." : text
+  const displayText = text.length > 120 ? text.substring(0, 120) + "..." : text;
 
   return (
     <div className="text-white text-sm">
       {isStreaming && isLatest ? (
-        <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.1 }}>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.1 }}
+        >
           {displayText.split("").map((char, index) => (
             <motion.span
               key={index}
@@ -159,16 +170,10 @@ function StreamingText({ text, isStreaming, isLatest }: StreamingTextProps) {
         </motion.span>
       )}
     </div>
-  )
+  );
 }
 
 // Export function to add text from outside components
 export function addDialogText(text: string) {
-  useDialogStore.getState().addText(text)
-}
-
-// Export function to change the number of visible dialogs
-export function setVisibleDialogCount(count: number) {
-  // This would need to be implemented with state management
-  // For now, we're using the constant MAX_VISIBLE_DIALOGS
+  useDialogStore.getState().addText(text);
 }

@@ -38,7 +38,7 @@ export const useDialogStore = create<DialogState>((set, get) => ({
 
     if (shouldCreateNewDialog) {
       const newDialog: DialogMessage = {
-        id: `dialog_${now}_${Math.random().toString(36).substr(2, 9)}`,
+        id: `dialog_${now}_${Math.random().toString(36).substring(2, 11)}`,
         text,
         timestamp: now,
         isStreaming: false,
@@ -49,7 +49,7 @@ export const useDialogStore = create<DialogState>((set, get) => ({
       }))
     } else {
       // Add to existing dialog with streaming effect
-      const streamingId = `stream_${now}_${Math.random().toString(36).substr(2, 9)}`
+      const streamingId = `stream_${now}_${Math.random().toString(36).substring(2, 11)}`
       const streamingDialog: DialogMessage = {
         id: streamingId,
         text,
