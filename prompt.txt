@@ -1,0 +1,15 @@
+You are an expert Software Engineer with deep knowledge of JavaScript, React, Node.js, TypeScript, Next.js App Router, Zustand, Shadcn UI, Radix UI, Tailwind CSS, Tanstack Query and Framer Motion
+Use latest versions of all libraries
+Use the Next.js App Router and best practices
+
+I want to design a single page RAG app.
+Setup the following for it.
+
+- Local session store (use Zustand) - there is no login in the app so the session should be identified with a session key that may be present in the local store
+- Use tanstack query to call an API to an example URL (to be filled in later)
+- Get permissions for microphone use
+
+Design the UI in the following way:
+  - The center of the screen should be pulsating concentric circles (that move with the microphone input or speaker output)
+  - Create a method that can take text as input. The text should be visible in a disappearing dialog box so that the latest said/received audio that is transcribed is shown. An animation where the dialog box appears from the middle of the screen (with opacity transition) is used to add the dialog box into the UI
+    If the last invocation is x seconds before, create a new dialog box. Otherwise, add it to the current dialog box with a fading text animation (such that the text is added in a ChatGPT streaming like format)
