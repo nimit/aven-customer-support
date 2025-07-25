@@ -1,0 +1,100 @@
+List all the question/answers on this FAQ page in as much detail as possible without repeating yourself.
+Make sure you are not hallucinating and strictly retain facts from the page.
+For each question-answer pair, generate a list of keywords and tags that are related to or appear in the content
+
+
+{
+  "description": "Schema describing a list of question-answer objects with associated tags",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "List of question-answer objects",
+      "items": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer",
+          "tags"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The question text"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the question"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Keywords or tags associated with this Q&A pair"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+Research how home equity line of credit works, benefits, studies and research papers
+
+
+
+
+
+{
+  "description": "Schema describing a list of research items with source information and content",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "List of research items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL of the source"
+          },
+          "source": {
+            "type": "string",
+            "description": "Type of source (webpage, academic research, etc.)"
+          },
+          "date": {
+            "type": "string",
+            "description": "Approximate or actual date of the source"
+          },
+          "contents": {
+            "type": "array",
+            "description": "List of bullet points related to the research topic from the source",
+            "items": {
+              "type": "string",
+              "description": "A bullet point of information"
+            }
+          }
+        },
+        "required": [
+          "url",
+          "source",
+          "date",
+          "contents"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "additionalProperties": false
+}

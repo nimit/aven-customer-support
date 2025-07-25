@@ -9,7 +9,6 @@ const MAX_VISIBLE_DIALOGS = 3;
 
 export function DialogSystem() {
   const { dialogs, addText, clearOldDialogs } = useDialogStore();
-  const [visibleCount, setVisibleCount] = useState(MAX_VISIBLE_DIALOGS);
 
   // Demo function to add text - you can call this from your audio transcription
   useEffect(() => {
@@ -46,7 +45,7 @@ export function DialogSystem() {
   }, [addText]);
 
   // Only show the specified number of most recent dialogs
-  const visibleDialogs = dialogs.slice(-visibleCount).reverse();
+  const visibleDialogs = dialogs.slice(-MAX_VISIBLE_DIALOGS).reverse();
 
   return (
     <div className="fixed top-0 right-0 bottom-0 w-96 pointer-events-none flex flex-col-reverse justify-start items-end p-8 overflow-hidden">

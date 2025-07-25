@@ -1,0 +1,78 @@
+{
+  "items": [
+    {
+      "url": "https://www.bankofamerica.com/mortgage/learn/what-is-a-home-equity-line-of-credit",
+      "source": "webpage",
+      "date": "2023-07-18",
+      "contents": [
+        "A home equity line of credit (HELOC) is a revolving line of credit borrowed against the available equity in your home, which is the difference between the appraised value of your home and your current mortgage balance.",
+        "You can generally borrow up to 85% of the value of your home minus the amount you still owe on your mortgage.",
+        "You only pay interest on the portion of the credit line you use, similar to a credit card.",
+        "Bank of America HELOCs have no closing costs, application fees, annual fees, or fees to use the funds.",
+        "Interest rates are often lower than other forms of credit and may be tax deductible (consult a tax advisor).",
+        "Most HELOCs have variable interest rates that change based on the Wall Street Journal Prime Rate, but you can convert $5,000 or more of your balance to a fixed rate for predictable payments.",
+        "The borrowing period is usually 10 years, followed by a repayment period of about 20 years."
+      ]
+    },
+    {
+      "url": "https://www.bankrate.com/home-equity/pros-cons-of-home-equity-lines",
+      "source": "webpage",
+      "date": "2025-04-24",
+      "contents": [
+        "HELOCs offer lower interest rates compared to credit cards and personal loans, making them a cost-effective borrowing option.",
+        "They provide flexible terms, allowing you to borrow and repay as needed, with options like interest-only payments during the draw period.",
+        "Interest paid on HELOCs may be tax deductible if used for home renovations, subject to IRS rules and itemizing deductions.",
+        "HELOCs can potentially boost your credit score by adding to your credit mix and payment history.",
+        "They typically have high loan limits, often starting at $10,000 and can go up to several hundred thousand dollars depending on home equity.",
+        "Risks include variable interest rates that can increase payments, the risk of foreclosure since your home is collateral, and the potential to run up a high balance quickly.",
+        "Additional costs and fees may apply, though HELOCs generally have lower closing costs than home equity loans."
+      ]
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1042957305000252",
+      "source": "academic research",
+      "date": "2006-10-01",
+      "contents": [
+        "This empirical study analyzes the performance differences between home equity loans and home equity lines of credit (HELOCs).",
+        "Households with home equity loans are more sensitive to changes in interest rates, while those with HELOCs are more sensitive to changes in home property values.",
+        "A 1% drop in mortgage interest rates increases prepayment rates by 17.3% for home equity loans and 9.6% for HELOCs.",
+        "A 10% appreciation in home prices raises prepayment rates by 4.8% for loans and 16.4% for HELOCs, indicating HELOC borrowers respond more to equity accumulation.",
+        "The study provides insights into borrower behavior and risk, which can inform regulatory capital requirements for lenders."
+      ]
+    },
+    {
+      "url": "https://www.mba.org/news-and-research/research-and-economics/single-family-research/home-equity-lending-study",
+      "source": "research report",
+      "date": "2021-12-30",
+      "contents": [
+        "The Mortgage Bankers Association (MBA) conducts an annual Home Equity Lending Study covering HELOCs and home equity loans.",
+        "The study benchmarks volume, utilization rates, operational metrics, and growth expectations for HELOCs and home equity loans.",
+        "It provides data on loan-to-value ratios, borrower credit scores, delinquency and foreclosure rates, and servicing costs.",
+        "The 2024 study (covering 2023 data) is open for registration with a highlights publication available for purchase.",
+        "The study is a resource for lenders to benchmark their HELOC and home equity loan business against peers and understand market trends."
+      ]
+    },
+    {
+      "url": "https://www.investopedia.com/mortgage/heloc",
+      "source": "webpage",
+      "date": "03/02/2025",
+      "contents": [
+        "A HELOC is an ongoing line of credit that uses home equity as collateral, similar to a revolving credit card with a variable interest rate.",
+        "Borrowers can draw and repay funds as needed during the draw period, paying interest only on amounts borrowed, and repay or redraw up to the credit limit.",
+        "Credit limits are based on the combined loan-to-value (CLTV) ratio, typically allowing borrowers to tap up to 80–90% of home value minus outstanding mortgage balance.",
+        "HELOCs generally have lower closing costs compared to home equity loans and provide flexible access methods such as checks, online transfers, and linked credit cards.",
+        "Interest rates are variable and tied to market indexes, but some lenders offer fixed-rate conversion options for portions of the balance.",
+        "As a secured loan, failure to make payments can result in a lien or foreclosure on the home."
+      ]
+    },
+    {
+      "url": "https://www.bankrate.com/home-equity/pros-cons-of-home-equity-lines",
+      "source": "webpage",
+      "date": "04/24/2025",
+      "contents": [
+        "Pros: Lower interest rates than unsecured credit, flexibility to borrow only what is needed, possible tax-deductible interest when funds are used for home improvements, potential credit score boost, and high loan limits often starting at five figures.",
+        "Cons: Variable interest rates can cause payments to rise, the home is collateral which poses foreclosure risk, reduced equity cushion can leave borrowers underwater if home values fall, potential to run up balances quickly especially with interest-only payments, and additional costs such as closing fees or annual fees may apply."
+      ]
+    }
+  ]
+}
