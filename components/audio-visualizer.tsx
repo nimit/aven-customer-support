@@ -1,17 +1,21 @@
-"use client"
+"use client";
 
-import { useAudioAnalyzer } from "@/hooks/use-audio-analyzer"
-import { motion } from "framer-motion"
+import { useAudioAnalyzer } from "@/hooks/use-audio-analyzer";
+import { motion } from "framer-motion";
 
 interface AudioVisualizerProps {
-  hasPermissions: boolean
+  hasPermissions: boolean;
+  assistantSpeaking: boolean;
 }
 
-export function AudioVisualizer({ hasPermissions }: AudioVisualizerProps) {
-  const { audioLevel, isActive } = useAudioAnalyzer(hasPermissions)
+export function AudioVisualizer({
+  hasPermissions,
+  assistantSpeaking,
+}: AudioVisualizerProps) {
+  const { audioLevel, isActive } = useAudioAnalyzer(hasPermissions);
 
-  const baseScale = 1
-  const audioScale = 1 + audioLevel * 0.5 // Scale based on audio level
+  const baseScale = 1;
+  const audioScale = 1 + audioLevel * 0.5; // Scale based on audio level
 
   return (
     <div className="relative flex items-center justify-center">
@@ -60,7 +64,10 @@ export function AudioVisualizer({ hasPermissions }: AudioVisualizerProps) {
           height: 100,
         }}
         animate={{
-          scale: isActive ? audioScale : [baseScale, baseScale + 0.2, baseScale],
+          scale:
+            isActive && assistantSpeaking
+              ? audioScale
+              : [baseScale, baseScale + 0.2, baseScale],
           opacity: [0.6, 1, 0.6],
         }}
         transition={
@@ -105,11 +112,13 @@ export function AudioVisualizer({ hasPermissions }: AudioVisualizerProps) {
       />
 
       {/* Music-style frequency visualization */}
-      {isActive && (
+      {isActive && !assistantSpeaking && (
         <div className="fixed bottom-0 left-0 right-0 h-32 flex items-end justify-center gap-1 px-4 pointer-events-none z-0">
           {Array.from({ length: 64 }).map((_, index) => {
-            const frequency = Math.sin((index * Math.PI) / 32) * audioLevel * 0.8 + audioLevel * 0.2
-            const height = Math.max(4, frequency * 120)
+            const frequency =
+              Math.sin((index * Math.PI) / 32) * audioLevel * 0.8 +
+              audioLevel * 0.2;
+            const height = Math.max(4, frequency * 120);
             return (
               <motion.div
                 key={index}
@@ -132,10 +141,10 @@ export function AudioVisualizer({ hasPermissions }: AudioVisualizerProps) {
                   },
                 }}
               />
-            )
+            );
           })}
         </div>
       )}
     </div>
-  )
+  );
 }

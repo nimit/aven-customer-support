@@ -5,9 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 // Parameterized number of visible dialogs
-const MAX_VISIBLE_DIALOGS = 3;
+const MAX_VISIBLE_DIALOGS = 2;
 
-export function DialogSystem() {
+interface TranscriptItem {
+  role: string;
+  text: string;
+}
+
+interface DialogSystemProps {
+  transcript: TranscriptItem[];
+}
+
+export function DialogSystem({ transcript }: DialogSystemProps) {
   const { dialogs, addText, clearOldDialogs } = useDialogStore();
 
   // Demo function to add text - you can call this from your audio transcription
@@ -19,30 +28,42 @@ export function DialogSystem() {
     return () => clearInterval(interval);
   }, [clearOldDialogs]);
 
-  // Demo: Add some sample text every 10 seconds
   useEffect(() => {
-    const demoTexts = [
-      "Hello, how can I help you today?",
-      "I'm processing your request...",
-      "Here's what I found in the knowledge base.",
-      "Would you like me to explain this further?",
-      "Let me search for more information.",
-    ];
-
-    let index = 1;
+    // const texts = [
+    //   getLatestSentenceByRole("user"),
+    //   getLatestSentenceByRole("assistant"),
+    // ];
+    const texts = (
+      transcript.length > 2 ? transcript.slice(-2) : transcript
+    ).map((v) => v.text);
+    console.log("TEXTS", texts);
+    let index = 0;
     const interval = setInterval(() => {
-      addText(demoTexts[index % demoTexts.length]);
+      addText(texts[index]);
       index++;
-    }, 5000);
+      if (index == texts.length) clearInterval(interval);
+    }, 500);
+    return () => clearInterval(interval);
+  }, [transcript]);
 
-    // Add initial text
-    const timeoutId = setTimeout(() => addText(demoTexts[0]), 2000);
+  // function getLatestSentenceByRole(role: string): string {
+  //   const sentenceEnd = /[.!?]\s*$/;
+  //   let result = "";
 
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeoutId);
-    };
-  }, [addText]);
+  //   // Start from the end and go backward
+  //   for (let i = transcript.length - 1; i >= 0; i--) {
+  //     const entry = transcript[i];
+  //     if (entry.role !== role) continue;
+
+  //     result = entry.text + " " + result;
+
+  //     if (sentenceEnd.test(entry.text.trim())) {
+  //       break;
+  //     }
+  //   }
+
+  //   return result.trim();
+  // }
 
   // Only show the specified number of most recent dialogs
   const visibleDialogs = dialogs.slice(-MAX_VISIBLE_DIALOGS).reverse();
@@ -77,6 +98,7 @@ interface DialogBoxProps {
 }
 
 function DialogBox({ dialog, isLatest, position, total }: DialogBoxProps) {
+  if (!dialog.text || dialog.text.trim().length == 0) return <></>;
   return (
     <motion.div
       initial={{
@@ -127,7 +149,11 @@ interface StreamingTextProps {
 
 function StreamingText({ text, isStreaming, isLatest }: StreamingTextProps) {
   // Limit text length to prevent overflow
-  const displayText = text.length > 120 ? text.substring(0, 120) + "..." : text;
+  // const displayText = text.length > 120 ? text.substring(0, 120) + "..." : text;
+  const displayText =
+    text.length > 120
+      ? "..." + text.substring(text.length - 120, text.length)
+      : text;
 
   return (
     <div className="text-white text-sm">
